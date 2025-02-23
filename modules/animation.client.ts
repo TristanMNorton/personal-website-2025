@@ -89,7 +89,7 @@ export default function useAnimation(canvasEl: Readonly<ShallowRef<HTMLCanvasEle
         },
       }).toDestination()
       const possibleNotes = ['C3', 'E3', 'G3', 'B3', 'C4', 'E4', 'G4', 'B4', 'C5', 'E5', 'G5', 'B5']
-      synth.volume.value = -16
+      synth.volume.value = -32
       const reverb = new Tone.JCReverb({
         roomSize: 0.95,
         wet: 0.8,
@@ -146,7 +146,7 @@ function createSpheres(scene: Scene, camera: PerspectiveCamera, texture: Texture
     // @ts-expect-error I swear to god TS I will harm you
     const ringGeometries = createRingGeometriesFromElement(sphere.element)
 
-    const ringMaterial = new MeshPhysicalMaterial({ color: '#e3e2df', side: DoubleSide, transparent: true, iridescence: 1, opacity: 0.15 })
+    const ringMaterial = new MeshPhysicalMaterial({ color: '#e3e2df', side: DoubleSide, transparent: true, iridescence: 1, opacity: 0.35 })
 
     ringGeometries.forEach((geometry) => {
       const ringMesh = new Mesh(geometry, ringMaterial)
