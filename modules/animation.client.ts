@@ -166,7 +166,7 @@ function createSpheres(scene: Scene, camera: PerspectiveCamera, texture: Texture
     const randomPosY = random.range(-(camera.getFilmHeight()), camera.getFilmHeight())
     const randomPosZ = random.range(camera.position.z, camera.position.y - 100)
 
-    const geometry = new SphereGeometry(0.5, 32, 32)
+    const geometry = new SphereGeometry(0.9, 32, 32)
     const material = new MeshPhysicalMaterial({ color: '#e3e2df', bumpMap: texture, iridescence: 1, ior: 0.5, metalness: 0.5 })
     const sphere = new Mesh(geometry, material)
 
@@ -176,7 +176,7 @@ function createSpheres(scene: Scene, camera: PerspectiveCamera, texture: Texture
     // @ts-expect-error I swear to god TS I will harm you
     const ringGeometries = createRingGeometriesFromElement(sphere.element)
 
-    const ringMaterial = new MeshPhysicalMaterial({ color: '#e3e2df', side: DoubleSide, transparent: true, iridescence: 1, opacity: 0.35 })
+    const ringMaterial = new MeshPhysicalMaterial({ color: '#e3e2df', side: DoubleSide, transparent: true, iridescence: 1, opacity: 1 })
 
     ringGeometries.forEach((geometry) => {
       const ringMesh = new Mesh(geometry, ringMaterial)
@@ -205,7 +205,7 @@ function createSpheres(scene: Scene, camera: PerspectiveCamera, texture: Texture
  * @param  {Object} camera  https://threejs.org/docs/#api/en/cameras/PerspectiveCamera
  */
 function updateSpheres(spheres: Mesh<SphereGeometry, MeshPhysicalMaterial, Object3DEventMap>[]) {
-  const sphereRotationSpeed = 0.09
+  const sphereRotationSpeed = 0.1
 
   for (let i = 0; i < spheres.length; i++) {
     spheres[i].rotation.y = spheres[i].rotation.y + 0.005
@@ -229,8 +229,10 @@ function createRingGeometriesFromElement(element: Element): RingGeometry[] {
   const ringGeometries: RingGeometry[] = []
 
   for (let i = 0; i < element.shells.length; i++) {
-    for (let a = 0; a < element.shells[i]; a++) {
-      const geometry = new RingGeometry((i * 2 + 0.22), (i * 2 + 0.25), 80, 1, 0)
+    const shellsDivisor = Math.ceil(element.shells[i] / 8)
+
+    for (let a = 0; a < shellsDivisor; a++) {
+      const geometry = new RingGeometry((i * 2 + 0.2), (i * 2 + 0.25), 80, 1, 0)
       ringGeometries.push(geometry)
     }
   }
