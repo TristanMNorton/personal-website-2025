@@ -1,7 +1,12 @@
 <script setup lang="ts">
+import { useHead } from '#app'
 import SiteHeader from '~/components/SiteHeader.vue'
 import AnimationCanvas from '~/components/AnimationCanvas.vue'
 import '~/assets/styles/_global.scss'
+
+useHead({
+  title: 'Tristan Norton',
+})
 </script>
 
 <template>

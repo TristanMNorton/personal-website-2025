@@ -6,6 +6,7 @@
     <a
       href="https://github.com/TristanMNorton"
       class="github"
+      target="_blank"
     >
       <span class="screen-reader">
         View My Github
