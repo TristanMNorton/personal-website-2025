@@ -118,7 +118,7 @@ export default function useAnimation(canvasEl: Readonly<ShallowRef<HTMLCanvasEle
           decay: 2,
         },
       }).toDestination()
-      const possibleNotes = ['C6', 'E6', 'G6', 'B6']
+      const possibleNotes = ['C5', 'D5', 'E5', 'F5', 'G5', 'A5', 'B5', 'C6', 'D6', 'E6', 'F6', 'G6', 'A6', 'B6']
       synth.volume.value = -48
       const reverb = new Tone.JCReverb({
         roomSize: 0.95,
