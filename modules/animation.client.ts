@@ -76,6 +76,36 @@ export default function useAnimation(canvasEl: Readonly<ShallowRef<HTMLCanvasEle
     const mouse = new Vector2()
 
     let intersecting = false
+    const synth = new Tone.Synth({
+      oscillator: {
+        type: 'sine',
+      },
+      envelope: {
+        attack: 1,
+        release: 0.05,
+        decay: 2,
+      },
+    })
+    synth.volume.value = -32
+    synth.toDestination()
+    const pattern = new Tone.Pattern((time, note) => {
+      synth.triggerAttackRelease(note, 0.25)
+    }, ['C3', 'E3', 'G3', 'B3', 'C4', 'E4', 'G4', 'B4'], 'random')
+
+    function initPattern() {
+      const reverb = new Tone.JCReverb({
+        roomSize: 0.97,
+        wet: 0.8,
+      }).toDestination()
+      synth.connect(reverb)
+
+      pattern.start()
+      Tone.Transport.start()
+    }
+
+    function stopPattern() {
+      pattern.stop()
+    }
 
     function initSynth() {
       const synth = new Tone.Synth({
@@ -83,13 +113,13 @@ export default function useAnimation(canvasEl: Readonly<ShallowRef<HTMLCanvasEle
           type: 'sine',
         },
         envelope: {
-          attack: 0.05,
+          attack: 0,
           release: 0.05,
           decay: 2,
         },
       }).toDestination()
-      const possibleNotes = ['C3', 'E3', 'G3', 'B3', 'C4', 'E4', 'G4', 'B4', 'C5', 'E5', 'G5', 'B5']
-      synth.volume.value = -32
+      const possibleNotes = ['C6', 'E6', 'G6', 'B6']
+      synth.volume.value = -48
       const reverb = new Tone.JCReverb({
         roomSize: 0.95,
         wet: 0.8,
@@ -124,7 +154,7 @@ export default function useAnimation(canvasEl: Readonly<ShallowRef<HTMLCanvasEle
       })
     }
 
-    return initSynth
+    return { initSynth, initPattern, stopPattern }
   }
 }
 

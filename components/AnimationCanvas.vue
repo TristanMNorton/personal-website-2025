@@ -3,7 +3,8 @@ import { useTemplateRef, onMounted, computed } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 import useAnimation from '~/modules/animation.client'
 
-let initSynth = null
+let funcs = null
+let patternStarted = false
 
 const canvasEl = useTemplateRef<HTMLCanvasElement>('canvas')
 
@@ -20,13 +21,24 @@ const overlayBackgroundFilterInvertValue = computed(() => {
 onMounted(() => {
   if (canvasEl.value !== null) {
     // @ts-expect-error I swear to god TS I will harm you
-    initSynth = useAnimation(canvasEl)
+    funcs = useAnimation(canvasEl)
   }
 })
 
 const handleSoundEnable = () => {
   console.log('enableing')
-  initSynth()
+
+  if (!patternStarted) {
+    funcs.initPattern()
+
+    patternStarted = true
+  }
+  else {
+    funcs.stopPattern()
+
+    patternStarted = false
+  }
+  funcs.initSynth()
 }
 </script>
 
