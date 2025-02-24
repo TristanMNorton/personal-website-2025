@@ -59,7 +59,7 @@ const handleSoundEnable = () => {
     class="sound-start"
     @click="handleSoundEnable"
   >
-    <span class="sound-start-text">
+    <span class="screen-reader">
       {{ buttonText }}
     </span>
     <svg
@@ -120,19 +120,8 @@ const handleSoundEnable = () => {
   cursor: pointer;
 }
 
-.sound-start-text {
-
-  border: 0;
-    padding: 0;
-    margin: 0;
-    position: absolute !important;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-}
-
 .sound-start-icon {
-  width: 4rem;
-  height: 4rem;
+  width: 2rem;
+  height: 2rem;
 }
 </style>

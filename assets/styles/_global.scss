@@ -8,3 +8,13 @@
         --text-color: #ced8d3;
     }
 }
+
+.screen-reader {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}

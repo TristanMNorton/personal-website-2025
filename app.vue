@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SiteHeader from '~/components/SiteHeader.vue'
 import AnimationCanvas from '~/components/AnimationCanvas.vue'
-import '~/assets/styles/_properties.scss'
+import '~/assets/styles/_global.scss'
 </script>
 
 <template>
