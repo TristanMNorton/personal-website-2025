@@ -3,18 +3,6 @@
     <h1 class="title">
       Tristan Norton
     </h1>
-    <!-- <nav class="navigation">
-      <ul class="list">
-        <li class="list-item">
-          <NuxtLink
-            to="/record-collection"
-            class="link"
-          >
-            Heady Jams
-          </NuxtLink>
-        </li>
-      </ul>
-    </nav> -->
   </header>
 </template>
 

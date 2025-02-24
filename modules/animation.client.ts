@@ -144,9 +144,6 @@ export default function useAnimation(canvasEl: Readonly<ShallowRef<HTMLCanvasEle
 
           synth.triggerAttackRelease(possibleNotes[Math.floor(Math.random() * possibleNotes.length)], '4n')
           intersecting = true
-
-          // Mouse is over an object, intersects[0].object is the closest
-          console.log('Mouse over object:', intersects[0].object)
         }
         else {
           intersecting = false
@@ -199,11 +196,6 @@ function createSpheres(scene: Scene, camera: PerspectiveCamera, texture: Texture
   return array
 }
 
-/**
- * @function updateSpheres
- * @param  {Array} sphere objects collection of generated spheres
- * @param  {Object} camera  https://threejs.org/docs/#api/en/cameras/PerspectiveCamera
- */
 function updateSpheres(spheres: Mesh<SphereGeometry, MeshPhysicalMaterial, Object3DEventMap>[]) {
   const sphereRotationSpeed = 0.1
 
